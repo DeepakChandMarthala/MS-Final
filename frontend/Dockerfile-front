@@ -1,0 +1,7 @@
+# Use the official Nginx image as the base image
+FROM nginx:alpine
+
+# Copy the frontend templates to the Nginx HTML directory
+COPY ./templates /usr/share/nginx/html
+
+# Nginx will automatically serve static files

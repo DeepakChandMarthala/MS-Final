@@ -1,0 +1,52 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend-Backend Interaction</title>
+</head>
+<body>
+    <h1>Frontend-Backend Interaction</h1>
+    <form action="/process" method="post">
+    <form action="http://backend:5000/process" method="post">
+        <button type="submit">Click Me!</button>
+    </form>
+</body>
+</html>
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend-Backend Interaction</title>
+    <script>
+        // Dynamically determine backend URL
+        document.addEventListener("DOMContentLoaded", () => {
+            // Define backend URL based on environment
+            let backendUrl;
+
+            // Check the current hostname
+            if (window.location.hostname === "localhost") {
+                // Local environment (when running locally on your machine)
+                backendUrl = "http://localhost:5000";
+            } else {
+                // Kubernetes environment (DNS name for backend service)
+                backendUrl = "http://backend-service:5000";
+            }
+
+            // Set the form action dynamically
+            const form = document.getElementById("backendForm");
+            form.action = backendUrl + "/process";
+        });
+    </script>
+</head>
+<body>
+    <h1>Frontend-Backend Interaction</h1>
+    <form id="backendForm" method="post">
+        <button type="submit">Click Me!</button>
+    </form>
+</body>
+</html>
