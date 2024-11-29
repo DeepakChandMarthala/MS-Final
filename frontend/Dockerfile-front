@@ -1,6 +1,7 @@
 # Use the official Nginx image as the base image
 FROM nginx:alpine
 
+ENV BACKEND_URL=backend-service:5000
 # Copy the frontend templates to the Nginx HTML directory
 COPY ./templates /usr/share/nginx/html
 

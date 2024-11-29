@@ -23,21 +23,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frontend-Backend Interaction</title>
     <script>
-        // Dynamically determine backend URL
         document.addEventListener("DOMContentLoaded", () => {
-            // Define backend URL based on environment
             let backendUrl;
 
-            // Check the current hostname
             if (window.location.hostname === "localhost") {
-                // Local environment (when running locally on your machine)
-                backendUrl = "http://localhost:5000";
+                backendUrl = "http://localhost:5000"; // Local environment
+            } else if (window.location.hostname.includes("backend")) {
+                backendUrl = "http://process.env.BACKEND_URL:5000"; // Kubernetes environment
+                
+                
             } else {
-                // Kubernetes environment (DNS name for backend service)
-                backendUrl = "http://backend-service:5000";
+                // Default fallback for unexpected cases
+                backendUrl = ""; // Do not append extra `/process`
             }
 
-            // Set the form action dynamically
+            // Dynamically set the form action
             const form = document.getElementById("backendForm");
             form.action = backendUrl + "/process";
         });
@@ -50,3 +50,45 @@
     </form>
 </body>
 </html>
+
+
+
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend-Backend Interaction</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let backendUrl;
+
+            // Detect the environment
+            if (window.location.hostname === "localhost") {
+                // Running locally
+                backendUrl = "http://localhost:5000";
+            } else if (window.location.hostname === "backend-container") {
+                // Running in Docker containers
+                backendUrl = "http://backend-container:5000";
+            } else {
+                // Running in Kubernetes
+                backendUrl = "http://backend-service.ms-final.svc.cluster.local";
+            }
+
+            // Dynamically set the form action
+            const form = document.getElementById("backendForm");
+            form.action = backendUrl + "/process";
+        });
+    </script>
+</head>
+<body>
+    <h1>Frontend-Backend Interaction</h1>
+    <form id="backendForm" method="post">
+        <button type="submit">Click Me!</button>
+    </form>
+</body>
+</html>
+-->

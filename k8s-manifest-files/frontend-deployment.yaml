@@ -1,10 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-configmap # name of the config-map
+  namespace: ms-final
+data:
+  BACKEND_URL: "http://backend-service.ms-final.svc.local.cluster:5000"
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
   namespace: ms-final
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -16,5 +26,11 @@ spec:
       containers:
       - name: frontend
         image: deepakchandmarthala/ms-final:frontend
+        envFrom:
+          - configMapRef: 
+              name: frontend-configmap
+              optional: false
         ports:
         - containerPort: 80
+
+    
