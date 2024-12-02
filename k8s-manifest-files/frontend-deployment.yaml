@@ -4,7 +4,7 @@ metadata:
   name: frontend-configmap # name of the config-map
   namespace: ms-final
 data:
-  BACKEND_URL: "http://backend-service.ms-final.svc.local.cluster:5000"
+  BACKEND_URL: "http://backend-service.ms-final.svc.local.cluster:30007"
 
 ---
 
@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: deepakchandmarthala/ms-final:frontend
+        image: deepakchandmarthala/ms-final:frontend-v2
         envFrom:
           - configMapRef: 
               name: frontend-configmap
