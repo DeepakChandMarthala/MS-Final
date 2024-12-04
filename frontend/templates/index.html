@@ -27,9 +27,9 @@
             let backendUrl;
 
             if (window.location.hostname === "localhost") {
-                backendUrl = "http://localhost:30007"; // Local environment
+                backendUrl = "http://localhost:5000"; // Local environment "http://localhost:5000"
             } else if (window.location.hostname.includes("backend")) {
-                backendUrl = "http://process.env.BACKEND_URL:30007"; // Kubernetes environment
+                backendUrl = "http://process.env.BACKEND_URL:5000"; // Kubernetes environment "http://process.env.BACKEND_URL:5000"
                 
                 
             } else {
