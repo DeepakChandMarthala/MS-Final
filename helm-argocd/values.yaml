@@ -9,7 +9,7 @@ frontend:
     type: LoadBalancer
     port: 80
   config:
-    backendUrl: "http://backend-service.ms-final.svc.cluster.local:30007"
+    backendUrl: "http://backend-service.ms-final.svc.cluster.local:5000"
 
 backend:
   replicas: 1
