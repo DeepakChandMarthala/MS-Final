@@ -138,7 +138,7 @@ Monitor deployment status in the ArgoCD UI.
 ## How to Run the Project
 1. Clone the repository:
    ```bash
-   git clone https://github.com/DeepakChandMarthala/MS-Final
+   git clone https://github.com/DeepakChandMarthala/Python-app-with-docker-K8-s-and-ArgoCd.git
    ```
 2. Navigate to the project directory.
 3. Use Docker Compose to build and start the application:
